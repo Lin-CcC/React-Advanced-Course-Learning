@@ -18,7 +18,7 @@ export default function NavBar() {
             align="center"
             sx={{ flexGrow: 1 }}
           >
-            Alex Memos
+            Evexa Memos
           </Typography>
         </Toolbar>
       </AppBar>

@@ -1,9 +1,9 @@
-const API_KEY = "8044c5ff43da29b1a91b760bf3a91592";
+const API_KEY = '5fff51583e37a40958ca097760ab5fb9';
 
 export async function getCurrentWeather(lat, lon) {
   try {
     const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`
+      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`,
     );
 
     return await response.json();
@@ -15,7 +15,7 @@ export async function getCurrentWeather(lat, lon) {
 export async function getForecastWeather(lat, lon) {
   try {
     const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`
+      `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`,
     );
 
     return await response.json();
