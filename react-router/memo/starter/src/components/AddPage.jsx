@@ -37,7 +37,6 @@ export default function AddPage() {
         label="content"
         multiline
         rows={4}
-        defaultValue=""
         style={{ marginBottom: '10px' }}
         value={content}
         onChange={(event) => setContent(event.target.value)}

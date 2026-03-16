@@ -2,7 +2,7 @@ import List from '@mui/material/List';
 import AlignItem from '../ui/AlignItem';
 import { useLocalStorage } from 'react-use';
 
-export default function AlignList() {
+export default function AlignList({ searchResult = '' }) {
   // const listData = [
   //   {
   //     Id: 1,
@@ -51,10 +51,11 @@ export default function AlignList() {
   //   },
   // ];
   const [listData] = useLocalStorage('listData-key', []);
+  searchResult = searchResult === '' ? listData : searchResult;
 
   return (
     <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
-      {listData.map((item) => {
+      {searchResult.map((item) => {
         return <AlignItem item={item} key={item.id} />;
       })}
     </List>
