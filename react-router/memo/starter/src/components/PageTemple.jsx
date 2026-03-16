@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import NavBar from './NavBar';
 import BottomNavi from '../ui/BottomNavi';
+import { Toaster } from 'react-hot-toast';
 
 function PageTemple() {
   return (
@@ -10,6 +11,7 @@ function PageTemple() {
         <Outlet />
       </div>
       <BottomNavi />
+      <Toaster />
     </>
   );
 }

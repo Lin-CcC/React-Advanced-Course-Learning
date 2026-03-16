@@ -1,5 +1,6 @@
 import { Button, TextField } from '@mui/material';
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 import { useLocalStorage } from 'react-use';
 
 export default function AddPage() {
@@ -8,7 +9,14 @@ export default function AddPage() {
   const [listData, setListData] = useLocalStorage('listData-key', []);
 
   function addList() {
+    if (title === '' || content === '') {
+      toast.error('please fill in the blanks');
+      return;
+    }
     setListData([...listData, { id: Date.now(), title, body: content }]);
+    toast.success('add complete!');
+    setTitle('');
+    setContent('');
   }
 
   return (
@@ -18,6 +26,7 @@ export default function AddPage() {
         label="title"
         variant="outlined"
         style={{ marginBottom: '10px', marginTop: '10px' }}
+        value={title}
         onChange={(event) => {
           setTitle(event.target.value);
         }}
@@ -30,7 +39,8 @@ export default function AddPage() {
         rows={4}
         defaultValue=""
         style={{ marginBottom: '10px' }}
-        onChange={(event) => [setContent(event.target.value)]}
+        value={content}
+        onChange={(event) => setContent(event.target.value)}
       />
       <br />
       <Button
