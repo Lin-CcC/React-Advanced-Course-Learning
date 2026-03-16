@@ -6,8 +6,8 @@ export default function AlignItem({ item }) {
     <>
       <ListItem alignItems="flex-start">
         <ListItemText
-          primary={item.primary}
-          secondary={<React.Fragment>{item.secondary}</React.Fragment>}
+          primary={item.title}
+          secondary={<React.Fragment>{item.body}</React.Fragment>}
         />
       </ListItem>
       <Divider variant="fullWidth" component="li" />
