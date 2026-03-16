@@ -1,16 +1,17 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import PageTemple from './components/PageTemple';
 import AlignList from './components/AlignList';
-import NavBar from './components/Navbar';
-import BottomNavi from './ui/BottomNavi';
-
+import AddPage from './components/AddPage';
 function App() {
   return (
-    <>
-      <NavBar />
-      <div style={{ marginBottom: '56px', marginTop: '56px', zIndex: '0' }}>
-        <AlignList />
-      </div>
-      <BottomNavi />
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<PageTemple />}>
+          <Route index element={<AlignList />} />
+          <Route path="add" element={<AddPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 export default App;
