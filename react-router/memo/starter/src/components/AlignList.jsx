@@ -2,7 +2,7 @@ import List from '@mui/material/List';
 import AlignItem from '../ui/AlignItem';
 import { useLocalStorage } from 'react-use';
 
-export default function AlignList({ searchResult = '' }) {
+export default function AlignList({ filterResult }) {
   // const listData = [
   //   {
   //     Id: 1,
@@ -50,13 +50,20 @@ export default function AlignList({ searchResult = '' }) {
   //     secondary: 'Do you have Paris recommendations? Have you ever…',
   //   },
   // ];
-  const [listData] = useLocalStorage('listData-key', []);
-  searchResult = searchResult === '' ? listData : searchResult;
+  const [listData, setListData] = useLocalStorage('listData-key', []);
+  const finalList = filterResult || listData;
+
+  function handleDelete(id) {
+    const newList = listData.filter((item) => item.id !== id);
+    setListData(newList);
+  }
 
   return (
     <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
-      {searchResult.map((item) => {
-        return <AlignItem item={item} key={item.id} />;
+      {finalList.map((item) => {
+        return (
+          <AlignItem item={item} key={item.id} handleDelete={handleDelete} />
+        );
       })}
     </List>
   );

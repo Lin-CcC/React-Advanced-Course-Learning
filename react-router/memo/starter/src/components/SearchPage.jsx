@@ -5,17 +5,13 @@ import { useLocalStorage } from 'react-use';
 
 function SearchPage() {
   const [search, setSearch] = useState('');
-  const [listData] = useLocalStorage('listData-key', []);
-  const [searchResult, setSearchResult] = useState(listData);
+  const [listData, setListData] = useLocalStorage('listData-key', []);
 
-  useEffect(() => {
-    if (search === '') {
-      setSearchResult(listData);
-    } else {
-      const filtered = listData.filter((item) => item.title.includes(search));
-      setSearchResult(filtered);
-    }
-  }, [search, listData]);
+  const filterResult = search
+    ? listData.filter((item) =>
+        item.title.toLowerCase().includes(search.toLowerCase()),
+      )
+    : null;
 
   return (
     <>
@@ -29,7 +25,7 @@ function SearchPage() {
         }}
         value={search}
       />
-      <AlignList searchResult={searchResult} />
+      <AlignList searchResult={filterResult} />
     </>
   );
 }
