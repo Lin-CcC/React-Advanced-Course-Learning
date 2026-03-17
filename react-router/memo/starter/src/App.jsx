@@ -3,6 +3,7 @@ import PageTemple from './components/PageTemple';
 import AlignList from './components/AlignList';
 import AddPage from './components/AddPage';
 import SearchPage from './components/SearchPage';
+import EditPage from './components/EditPage';
 function App() {
   return (
     <BrowserRouter>
@@ -11,6 +12,7 @@ function App() {
           <Route index element={<AlignList />} />
           <Route path="add" element={<AddPage />} />
           <Route path="search" element={<SearchPage />} />
+          <Route path="memo/:memoId" element={<EditPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

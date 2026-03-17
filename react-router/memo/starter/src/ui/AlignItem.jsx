@@ -3,9 +3,13 @@ import React from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import toast from 'react-hot-toast';
+import EditPage from '../components/EditPage';
+import { useNavigate } from 'react-router-dom';
 
 export default function AlignItem({ item, handleDelete }) {
   const processedBody = truncateText(item.body);
+  const navigate = useNavigate();
+
   function truncateText(text) {
     const maxLength = 20;
     if (!text) return '';
@@ -24,7 +28,12 @@ export default function AlignItem({ item, handleDelete }) {
 
   return (
     <>
-      <ListItem alignItems="flex-start">
+      <ListItem
+        alignItems="flex-start"
+        onClick={() => {
+          navigate(`/memo/${item.id}`);
+        }}
+      >
         <ListItemText
           primary={item.title}
           secondary={<React.Fragment>{processedBody}</React.Fragment>}
@@ -32,7 +41,8 @@ export default function AlignItem({ item, handleDelete }) {
         <IconButton
           edge="end"
           aria-label="delete"
-          onClick={() => {
+          onClick={(event) => {
+            event.stopPropagation(); // 阻止事件冒泡，避免触发父组件的onClick
             handleDelete(item.id);
             toast.success('delete complete!');
           }}
