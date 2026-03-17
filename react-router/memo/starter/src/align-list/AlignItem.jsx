@@ -3,7 +3,7 @@ import React from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import toast from 'react-hot-toast';
-import EditPage from '../components/EditPage';
+import EditPage from '../features/edit/EditPage';
 import { useNavigate } from 'react-router-dom';
 
 export default function AlignItem({ item, handleDelete }) {

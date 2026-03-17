@@ -1,5 +1,5 @@
 import { TextField } from '@mui/material';
-import AlignList from './AlignList';
+import AlignList from '../../align-list/AlignList';
 import { useEffect, useState } from 'react';
 import { useLocalStorage } from 'react-use';
 import { useSearchParams } from 'react-router-dom';

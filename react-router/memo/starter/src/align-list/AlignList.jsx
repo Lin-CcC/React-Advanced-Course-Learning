@@ -1,5 +1,5 @@
 import List from '@mui/material/List';
-import AlignItem from '../ui/AlignItem';
+import AlignItem from './AlignItem';
 import { useLocalStorage } from 'react-use';
 
 export default function AlignList({ filterResult }) {
