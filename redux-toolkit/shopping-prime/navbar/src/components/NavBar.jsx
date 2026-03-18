@@ -3,23 +3,10 @@ import { Menubar } from 'primereact/menubar';
 import { InputText } from 'primereact/inputtext';
 import { Badge } from 'primereact/badge';
 import { Button } from 'primereact/button';
+import useToggleTheme from '../../hook/useToggleTheme';
 
 export default function NavBar() {
-  const [currentTheme, setCurrentTheme] = useState('light');
-
-  function toggleTheme() {
-    setCurrentTheme(currentTheme === 'light' ? 'dark' : 'light');
-  }
-
-  useEffect(() => {
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = `/themes/lara-${currentTheme}-cyan/theme.css`;
-    document.head.appendChild(link);
-    return () => {
-      document.head.removeChild(link);
-    };
-  }, [currentTheme]);
+  const { currentTheme, toggleTheme } = useToggleTheme();
 
   const itemRenderer = (item) => (
     <a className="flex align-items-center p-menuitem-link">
