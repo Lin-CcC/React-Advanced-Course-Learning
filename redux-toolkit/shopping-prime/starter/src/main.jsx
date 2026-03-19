@@ -5,7 +5,7 @@ import App from './App.jsx';
 import { PrimeReactProvider } from 'primereact/api';
 
 import 'primeicons/primeicons.css';
-
+import 'primeflex/primeflex.css';
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <PrimeReactProvider>

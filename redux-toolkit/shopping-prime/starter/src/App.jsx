@@ -1,6 +1,12 @@
 import React from 'react';
-import AppNavBar from './components/AppNavBar';
+import AppNavBar from '../ui/AppNavBar';
+import ProductsView from './components/ProductsView';
 
 export default function App() {
-  return <AppNavBar />;
+  return (
+    <div>
+      <AppNavBar />
+      <ProductsView />
+    </div>
+  );
 }
