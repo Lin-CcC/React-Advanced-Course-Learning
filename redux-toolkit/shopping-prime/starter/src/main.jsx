@@ -6,12 +6,10 @@ import { PrimeReactProvider } from 'primereact/api';
 
 import 'primeicons/primeicons.css';
 
-import 'primereact/resources/themes/lara-light-cyan/theme.css';
-
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <PrimeReactProvider>
       <App />
     </PrimeReactProvider>
-  </StrictMode>
+  </StrictMode>,
 );
