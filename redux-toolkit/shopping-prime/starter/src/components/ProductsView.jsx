@@ -8,9 +8,14 @@ import { ProductService } from '../service/ProductService';
 import { useLocalStorage } from 'react-use';
 import { Toast } from 'primereact/toast';
 import { show } from '../util/toastHelper';
+import { addCartList } from '../reudx/Slice/cartListSlice';
+import { useDispatch } from 'react-redux';
+
 export default function ProductsView() {
   const [products, setProducts] = useState([]);
   const [cartList, setCartList] = useLocalStorage('cartList', []);
+  const dispatch = useDispatch();
+
   const toastTopRight = useRef(null);
 
   const showMessage = (event, ref, severity) => {
@@ -28,7 +33,9 @@ export default function ProductsView() {
       showMessage(null, toastTopRight, 'error');
       return;
     }
-    setCartList([...cartList, product]);
+    const newCartList = [...cartList, product];
+    setCartList(newCartList);
+    dispatch(addCartList(newCartList));
     showMessage(null, toastTopRight, 'success');
   }
 

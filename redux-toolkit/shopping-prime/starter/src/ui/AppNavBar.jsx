@@ -3,14 +3,14 @@ import { Menubar } from 'primereact/menubar';
 import { InputText } from 'primereact/inputtext';
 import { Badge } from 'primereact/badge';
 import { Button } from 'primereact/button';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { openDialog } from '../reudx/Slice/dialogSlice';
 import { useLocalStorage } from 'react-use';
 
 export default function AppNavBar() {
   const [currentTheme, setCurrentTheme] = React.useState('light');
   const dispatch = useDispatch();
-  const [cartList] = useLocalStorage('cartList', []);
+  const cartListStore = useSelector((state) => state.cartList);
 
   useEffect(() => {
     const link = document.createElement('link');
@@ -48,7 +48,7 @@ export default function AppNavBar() {
       label: 'Cart',
       icon: 'pi pi-shopping-cart',
       //如果条件满足，就让这个对象中的所有属性都被这个新的对象所继承，把这个属性拓展、写入原对象中
-      ...(cartList.length > 0 && { badge: cartList.length }),
+      ...(cartListStore.length > 0 && { badge: cartListStore.length }),
       template: itemRenderer,
       command: () => {
         dispatch(openDialog());
