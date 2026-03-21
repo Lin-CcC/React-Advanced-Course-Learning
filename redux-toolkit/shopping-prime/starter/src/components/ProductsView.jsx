@@ -7,24 +7,29 @@ import { classNames } from 'primereact/utils';
 import { ProductService } from '../service/ProductService';
 import { useLocalStorage } from 'react-use';
 import { Toast } from 'primereact/toast';
-
+import { show } from '../util/toastHelper';
 export default function ProductsView() {
   const [products, setProducts] = useState([]);
   const [cartList, setCartList] = useLocalStorage('cartList', []);
   const toastTopRight = useRef(null);
 
   const showMessage = (event, ref, severity) => {
-    const label = '添加购物车成功';
-
-    ref.current.show({
-      severity: severity,
-      summary: label,
-      life: 1000,
-    });
+    let label = '添加购物车成功';
+    let life = 1000;
+    if (severity === 'error') {
+      label = '添加失败，该商品已在购物车中';
+      life = 3000;
+    }
+    show(ref, label, severity, life);
   };
 
   function addToCart(product) {
+    if (cartList.some((item) => Number(item.id) === Number(product.id))) {
+      showMessage(null, toastTopRight, 'error');
+      return;
+    }
     setCartList([...cartList, product]);
+    showMessage(null, toastTopRight, 'success');
   }
 
   useEffect(() => {
@@ -84,7 +89,6 @@ export default function ProductsView() {
                 disabled={product.inventoryStatus === 'OUTOFSTOCK'}
                 onClick={() => {
                   addToCart(product);
-                  showMessage(event, toastTopRight, 'success');
                 }}
               ></Button>
             </div>

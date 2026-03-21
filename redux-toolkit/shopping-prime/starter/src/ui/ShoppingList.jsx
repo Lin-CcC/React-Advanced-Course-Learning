@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { OrderList } from 'primereact/orderlist';
 import { ProductService } from '../service/ProductService';
+import { useLocalStorage } from 'react-use';
 
 export default function ShoppingList() {
-  const [products, setProducts] = useState([]);
+  const [cartList, setCartList] = useLocalStorage('cartList', []);
 
-  useEffect(() => {
-    ProductService.getProductsSmall().then((data) => setProducts(data));
-  }, []);
+  // useEffect(() => {
+  //   ProductService.getProductsSmall().then((data) => setProducts(data));
+  // }, []);
 
   const itemTemplate = (item) => {
     return (
@@ -33,8 +34,8 @@ export default function ShoppingList() {
     <div className="card xl:flex xl:justify-content-center">
       <OrderList
         dataKey="id"
-        value={products}
-        onChange={(e) => setProducts(e.value)}
+        value={cartList}
+        onChange={(e) => setCartList(e.value)}
         itemTemplate={itemTemplate}
         header="Products"
       ></OrderList>
