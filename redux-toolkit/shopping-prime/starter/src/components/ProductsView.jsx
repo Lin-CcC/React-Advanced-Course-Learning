@@ -4,7 +4,7 @@ import { DataView } from 'primereact/dataview';
 import { Rating } from 'primereact/rating';
 import { Tag } from 'primereact/tag';
 import { classNames } from 'primereact/utils';
-import { ProductService } from '../../service/ProductService';
+import { ProductService } from '../service/ProductService';
 
 export default function ProductsView() {
   const [products, setProducts] = useState([]);

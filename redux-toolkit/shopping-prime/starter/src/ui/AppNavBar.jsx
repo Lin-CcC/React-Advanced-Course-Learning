@@ -2,16 +2,18 @@ import React, { useEffect } from 'react';
 import { Menubar } from 'primereact/menubar';
 import { InputText } from 'primereact/inputtext';
 import { Badge } from 'primereact/badge';
-import { Avatar } from 'primereact/avatar';
 import { Button } from 'primereact/button';
+import { useDispatch } from 'react-redux';
+import { openDialog } from '../reudx/Slice/dialogSlice';
 
 export default function AppNavBar() {
   const [currentTheme, setCurrentTheme] = React.useState('light');
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = `../themes/lara-${currentTheme}-cyan/theme.css`;
+    link.href = `src/themes/lara-${currentTheme}-cyan/theme.css`;
     document.head.appendChild(link);
     return () => {
       document.head.removeChild(link);
@@ -45,6 +47,9 @@ export default function AppNavBar() {
       icon: 'pi pi-shopping-cart',
       badge: 3,
       template: itemRenderer,
+      command: () => {
+        dispatch(openDialog());
+      },
     },
   ];
 
