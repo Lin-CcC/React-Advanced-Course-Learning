@@ -1,13 +1,31 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Button } from 'primereact/button';
 import { DataView } from 'primereact/dataview';
 import { Rating } from 'primereact/rating';
 import { Tag } from 'primereact/tag';
 import { classNames } from 'primereact/utils';
 import { ProductService } from '../service/ProductService';
+import { useLocalStorage } from 'react-use';
+import { Toast } from 'primereact/toast';
 
 export default function ProductsView() {
   const [products, setProducts] = useState([]);
+  const [cartList, setCartList] = useLocalStorage('cartList', []);
+  const toastTopRight = useRef(null);
+
+  const showMessage = (event, ref, severity) => {
+    const label = '添加购物车成功';
+
+    ref.current.show({
+      severity: severity,
+      summary: label,
+      life: 1000,
+    });
+  };
+
+  function addToCart(product) {
+    setCartList([...cartList, product]);
+  }
 
   useEffect(() => {
     ProductService.getProducts().then((data) => setProducts(data));
@@ -64,6 +82,10 @@ export default function ProductsView() {
                 icon="pi pi-shopping-cart"
                 className="p-button-rounded"
                 disabled={product.inventoryStatus === 'OUTOFSTOCK'}
+                onClick={() => {
+                  addToCart(product);
+                  showMessage(event, toastTopRight, 'success');
+                }}
               ></Button>
             </div>
           </div>
@@ -83,13 +105,18 @@ export default function ProductsView() {
   };
 
   return (
-    <div className="card">
-      <DataView
-        value={products}
-        listTemplate={listTemplate}
-        paginator
-        rows={5}
-      />
+    <div>
+      <div className="card">
+        <DataView
+          value={products}
+          listTemplate={listTemplate}
+          paginator
+          rows={5}
+        />
+      </div>
+      <div className="card flex justify-content-center">
+        <Toast ref={toastTopRight} position="top-right" />
+      </div>
     </div>
   );
 }
