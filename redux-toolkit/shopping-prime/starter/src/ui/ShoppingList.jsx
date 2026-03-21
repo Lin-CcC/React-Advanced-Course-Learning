@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from 'react';
 import { OrderList } from 'primereact/orderlist';
-import { ProductService } from '../service/ProductService';
 import { useLocalStorage } from 'react-use';
 
 export default function ShoppingList() {
