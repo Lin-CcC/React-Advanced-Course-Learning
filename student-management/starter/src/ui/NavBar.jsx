@@ -1,6 +1,12 @@
+import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+
 export function NavBar() {
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
   return (
     <div className="navbar bg-base-300 shadow-sm">
+      {/* dropdown */}
       <div className="navbar-start">
         <div className="dropdown">
           <div
@@ -29,25 +35,64 @@ export function NavBar() {
             className="menu dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow text-2xl"
           >
             <li>
-              <a>Item 1</a>
+              <a
+                onClick={() => {
+                  navigate('/student');
+                }}
+                className={pathname === '/student' ? 'menu-active' : ''}
+              >
+                Student
+              </a>
             </li>
             <li>
-              <a>Item 3</a>
+              <a
+                onClick={() => {
+                  navigate('/score');
+                }}
+                className={pathname === '/score' ? 'menu-active' : ''}
+              >
+                Score
+              </a>
             </li>
           </ul>
         </div>
-        <a className="btn btn-ghost text-3xl">daisyUI</a>
+        <a
+          className="btn btn-ghost text-3xl"
+          onClick={() => {
+            navigate('/');
+          }}
+        >
+          daisyUI
+        </a>
       </div>
+
+      {/* web links */}
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 text-2xl">
           <li>
-            <a>student</a>
+            <a
+              onClick={() => {
+                navigate('/student');
+              }}
+              className={pathname === '/student' ? 'menu-active' : ''}
+            >
+              student
+            </a>
           </li>
           <li>
-            <a>grade</a>
+            <a
+              onClick={() => {
+                navigate('/score');
+              }}
+              className={pathname === '/score' ? 'menu-active' : ''}
+            >
+              score
+            </a>
           </li>
         </ul>
       </div>
+
+      {/* avatar */}
       <div className="navbar-end">
         <div className="avatar">
           <div className="w-20 rounded-full">
