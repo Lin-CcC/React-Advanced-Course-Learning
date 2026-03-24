@@ -93,11 +93,40 @@ export function NavBar() {
       </div>
 
       {/* avatar */}
-      <div className="navbar-end">
+      {/* <div className="navbar-end">
         <div className="avatar">
           <div className="w-20 rounded-full">
             <img src="https://img.daisyui.com/images/profile/demo/yellingcat@192.webp" />
           </div>
+        </div>
+      </div> */}
+      <div className="navbar-end">
+        <div className="dropdown dropdown-end">
+          <div tabIndex={0} role="button" className="btn btn-ghost avatar">
+            <div className="w-17 rounded-full">
+              <img
+                alt="Tailwind CSS Navbar component"
+                src="https://img.daisyui.com/images/profile/demo/yellingcat@192.webp"
+              />
+            </div>
+          </div>
+          <ul
+            tabIndex="-1"
+            className="menu menu-lg dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow text-2xl"
+          >
+            <li>
+              <a className="justify-between">Profile</a>
+            </li>
+            <li>
+              <a
+                onClick={() => {
+                  navigate('/login');
+                }}
+              >
+                Logout
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
