@@ -13,6 +13,7 @@ import { Navigate } from 'react-router-dom';
 import App from './App.jsx';
 import Signup from './features/auth/Signup.jsx';
 import Login from './features/auth/Login.jsx';
+import Info from './features/user/info.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -23,6 +24,7 @@ createRoot(document.getElementById('root')).render(
             <Route path="" element={<Navigate to="/score" />} />
             <Route path="score" element={<ScoreList />} />
             <Route path="student" element={<StudentList />} />
+            <Route path="info" element={<Info />} />
           </Route>
           <Route path="signup" element={<Signup />} />
           <Route path="login" element={<Login />} />
