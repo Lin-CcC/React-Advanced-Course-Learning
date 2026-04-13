@@ -1,11 +1,11 @@
-export function ScoreItem() {
+export function ScoreItem({ scoreItem }) {
   return (
     <tr>
-      <th>Evexa</th>
-      <td>Class 1 | Year 6</td>
-      <td>Math.</td>
-      <td>2026 fall</td>
-      <td>98.5</td>
+      <th>{scoreItem.name}</th>
+      <td>{scoreItem.class}</td>
+      <td>{scoreItem.subject}</td>
+      <td>{scoreItem.semester}</td>
+      <td>{scoreItem.score}</td>
       <td>
         <button className="btn btn-ghost btn-sm mr-1">details</button>
         <button className="btn btn-ghost btn-sm btn-soft btn-error">

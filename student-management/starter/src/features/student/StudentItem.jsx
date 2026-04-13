@@ -1,4 +1,4 @@
-export function StudentItem() {
+export function StudentItem({ student }) {
   return (
     <tr>
       <td>
@@ -6,21 +6,21 @@ export function StudentItem() {
           <div className="avatar">
             <div className="mask mask-squircle h-12 w-12">
               <img
-                src="https://img.daisyui.com/images/profile/demo/5@94.webp"
+                src={student.avatar}
                 alt="Avatar Tailwind CSS Component"
               />
             </div>
           </div>
           <div>
-            <div className="font-bold">Yancy Tear</div>
-            <div className="text-sm opacity-50">Brazil</div>
+            <div className="font-bold">{student.name}</div>
+            <div className="text-sm opacity-50">{student.class}</div>
           </div>
         </div>
       </td>
       <td>
-        Class 1 | Year 6
+        {student.subject} | {student.semester}
         <br />
-        <span className="badge badge-ghost badge-sm">Alex</span>
+        <span className="badge badge-ghost badge-sm">{student.score}</span>
       </td>
       <th>
         <button className="btn btn-ghost btn-sm mr-1">details</button>

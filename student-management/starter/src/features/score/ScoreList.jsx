@@ -1,6 +1,14 @@
+import { useEffect, useState } from 'react';
 import ScoreItem from './ScoreItem';
+import { getScoreList } from '../../services/apiScore';
 
 export function ScoreList() {
+  const [scoreList, setScoreList] = useState([]);
+  useEffect(() => {
+    const mockScoreList = getScoreList();
+    setScoreList(mockScoreList);
+  }, []);
+
   return (
     <div className="overflow-x-auto">
       <table className="table table-lg">
@@ -14,7 +22,10 @@ export function ScoreList() {
           </tr>
         </thead>
         <tbody>
-          <ScoreItem />
+          {/* <ScoreItem /> */}
+          {scoreList.map((scoreItem) => (
+            <ScoreItem key={scoreItem.id} scoreItem={scoreItem} />
+          ))}
         </tbody>
       </table>
     </div>
