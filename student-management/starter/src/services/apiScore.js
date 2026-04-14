@@ -105,3 +105,10 @@ export function updateSemesterById(id, newSemester) {
   }
   return false;
 }
+
+export function uploadScore(scoreData) {
+  const newId = mockScoreList.length + 1;
+  const newScore = { id: newId, ...scoreData };
+  mockScoreList.push(newScore);
+  return newScore;
+}

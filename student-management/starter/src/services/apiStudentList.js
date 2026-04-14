@@ -99,3 +99,9 @@ export function updateStudentById(id, updatedStudent) {
     mockStudentList[index] = { ...mockStudentList[index], ...updatedStudent };
   }
 }
+
+export function studentCreate(newStudent) {
+  const newId = Math.max(...mockStudentList.map((student) => student.id)) + 1;
+  const studentToAdd = { id: newId, ...newStudent };
+  mockStudentList.push(studentToAdd);
+}

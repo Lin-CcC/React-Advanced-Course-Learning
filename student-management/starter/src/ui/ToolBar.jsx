@@ -1,6 +1,8 @@
+import { Navigate, useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-use';
 
 export function ToolBar() {
+  const navigate = useNavigate();
   const location = useLocation();
   return (
     <section className="my-4 flex items-center gap-4">
@@ -100,7 +102,14 @@ export function ToolBar() {
         </label>
       </div>
       <div className="flex flex-1">
-        <button className="btn btn-neutral rounded-2xl px-6">
+        <button
+          className="btn btn-neutral rounded-2xl px-6"
+          onClick={() => {
+            location.pathname === '/student'
+              ? navigate('/student/create')
+              : navigate('/score/upload');
+          }}
+        >
           {location.pathname === '/student' ? 'create student' : 'upload grade'}
         </button>
       </div>

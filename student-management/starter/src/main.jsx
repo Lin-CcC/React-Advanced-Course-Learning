@@ -16,6 +16,8 @@ import Login from './features/auth/Login.jsx';
 import Info from './features/user/info.jsx';
 import ScoreEdit from './features/score/ScoreEdit.jsx';
 import StudentEdit from './features/student/StudentEdit.jsx';
+import ScoreUpload from './features/score/ScoreUpload.jsx';
+import StudentCreate from './features/student/StudentCreate.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -27,10 +29,12 @@ createRoot(document.getElementById('root')).render(
             <Route path="score">
               <Route path="" element={<ScoreList />} />
               <Route path=":id" element={<ScoreEdit />} />
+              <Route path="upload" element={<ScoreUpload />} />
             </Route>
             <Route path="student">
               <Route path="" element={<StudentList />} />
               <Route path=":id" element={<StudentEdit />} />
+              <Route path="create" element={<StudentCreate />} />
             </Route>
             <Route path="info" element={<Info />} />
           </Route>
