@@ -89,3 +89,13 @@ export function getStudentList() {
     };
   });
 }
+export function getStudentById(id) {
+  return getStudentList().find((student) => student.id === id);
+}
+
+export function updateStudentById(id, updatedStudent) {
+  const index = mockStudentList.findIndex((student) => student.id === id);
+  if (index !== -1) {
+    mockStudentList[index] = { ...mockStudentList[index], ...updatedStudent };
+  }
+}
