@@ -14,6 +14,8 @@ import App from './App.jsx';
 import Signup from './features/auth/Signup.jsx';
 import Login from './features/auth/Login.jsx';
 import Info from './features/user/info.jsx';
+import ScoreEdit from './features/score/ScoreEdit.jsx';
+import StudentEdit from './features/student/StudentEdit.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -22,8 +24,14 @@ createRoot(document.getElementById('root')).render(
         <Route path="/" element={<App />}>
           <Route element={<AppLayout />}>
             <Route path="" element={<Navigate to="/score" />} />
-            <Route path="score" element={<ScoreList />} />
-            <Route path="student" element={<StudentList />} />
+            <Route path="score">
+              <Route path="" element={<ScoreList />} />
+              <Route path=":id" element={<ScoreEdit />} />
+            </Route>
+            <Route path="student">
+              <Route path="" element={<StudentList />} />
+              <Route path=":id" element={<StudentEdit />} />
+            </Route>
             <Route path="info" element={<Info />} />
           </Route>
           <Route path="signup" element={<Signup />} />

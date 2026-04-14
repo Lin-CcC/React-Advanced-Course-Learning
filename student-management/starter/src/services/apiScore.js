@@ -83,3 +83,25 @@ const mockScoreList = [
 export function getScoreList() {
   return mockScoreList;
 }
+
+export function getScoreById(id) {
+  return mockScoreList.find((score) => score.id === id);
+}
+
+export function updateScoreById(id, newScore) {
+  const scoreItem = mockScoreList.find((score) => score.id === id);
+  if (scoreItem) {
+    scoreItem.score = newScore;
+    return true;
+  }
+  return false;
+}
+
+export function updateSemesterById(id, newSemester) {
+  const scoreItem = mockScoreList.find((score) => score.id === id);
+  if (scoreItem) {
+    scoreItem.semester = newSemester;
+    return true;
+  }
+  return false;
+}
